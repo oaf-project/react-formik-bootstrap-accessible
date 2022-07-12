@@ -1,6 +1,9 @@
 import {
   ErrorMessage,
   FieldProps as RawFieldProps,
+  Formik,
+  FormikConfig,
+  FormikProps,
   useFormikContext,
 } from "formik";
 import {
@@ -296,5 +299,28 @@ export const BootstrapSelect: React.ComponentType<SelectProps> = (
         <BootstrapErrorMessage name={name} id={invalidFeedbackId} />
       ) : undefined}
     </div>
+  );
+};
+
+export const Form = <Values, _>(props: FormikConfig<Values>) => {
+  const { children, ...formikProps } = props;
+  return (
+    <Formik
+      {...formikProps}
+      // Better accessibility if we wait until blur to validate.
+      // See e.g. https://www.tpgi.com/required-attribute-requirements/
+      validateOnChange={false}
+    >
+      {(renderProps: FormikProps<Values>): JSX.Element => (
+        <form
+          onSubmit={renderProps.handleSubmit}
+          // Better accessibility if we do our own inline validation.
+          // See e.g. https://www.tpgi.com/required-attribute-requirements/
+          noValidate={true}
+        >
+          {typeof children === "function" ? children(renderProps) : children}
+        </form>
+      )}
+    </Formik>
   );
 };
