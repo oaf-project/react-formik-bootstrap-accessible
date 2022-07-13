@@ -302,7 +302,7 @@ export const BootstrapSelect: React.ComponentType<SelectProps> = (
   );
 };
 
-export const Form = <Values, _>(props: FormikConfig<Values>) => {
+export const Form = <Values,>(props: FormikConfig<Values>) => {
   const { children, ...formikProps } = props;
   return (
     <Formik
