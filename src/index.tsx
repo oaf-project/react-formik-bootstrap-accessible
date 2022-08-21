@@ -316,6 +316,8 @@ export const Form = <Values,>(props: FormikConfig<Values>) => {
           onSubmit={renderProps.handleSubmit}
           // Better accessibility if we do our own inline validation.
           // See e.g. https://www.tpgi.com/required-attribute-requirements/
+          // Doing this allows us to set the `required` attribute on inputs (for
+          // the semantics!) without fear of triggering native (bad) validation.
           noValidate={true}
         >
           {typeof children === "function" ? children(renderProps) : children}
