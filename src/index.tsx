@@ -244,7 +244,7 @@ export const RenderOptions = <A extends string>({
 );
 
 export type BootstrapOptions = {
-  // TODO port floatingLabel to BoostrapInput
+  // TODO port floatingLabel to BootstrapInput
   readonly floatingLabel?: boolean;
 };
 
