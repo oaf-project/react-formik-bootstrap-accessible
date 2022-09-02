@@ -44,6 +44,7 @@ export type InputProps<
   // TODO exclude name? And anything else? Everything from formik's FieldInputProps?
   readonly inputProps?: InputHTMLAttributes<HTMLInputElement>;
 };
+
 /**
  * Focus the first invalid form element in a form after a failed form submission.
  * @see https://stackoverflow.com/a/67706127/2476884 for the inspiration
@@ -100,6 +101,12 @@ export const useFocusInvalidField = <
   return { fieldRef, containerElementRef };
 };
 
+/**
+ * A Formik `ErrorMessage` styled as a Bootstrap `invalid-feedback`.
+ *
+ * @see https://formik.org/docs/api/errormessage
+ * @see https://getbootstrap.com/docs/5.0/forms/validation/
+ */
 export const BootstrapErrorMessage = (props: {
   readonly name: string;
   readonly id: string;
@@ -113,6 +120,19 @@ export const BootstrapErrorMessage = (props: {
   </ErrorMessage>
 );
 
+/**
+ * Usage:
+ *
+ *  <Field name="givenName">
+ *    {(fieldProps: FieldProps) => (
+ *      <BootstrapInput
+ *        label="Your Given Name"
+ *        fieldProps={fieldProps}
+ *        inputProps={{ placeholder: "Jane" }}
+ *      />
+ *    )}
+ *  </Field>
+ */
 export const BootstrapInput: React.ComponentType<InputProps> = (
   props: InputProps,
 ) => {
