@@ -3,7 +3,7 @@ import {
   FieldProps as RawFieldProps,
   Formik,
   FormikConfig,
-  FormikProps,
+  FormikValues,
   useFormikContext,
 } from "formik";
 import {
@@ -302,16 +302,18 @@ export const BootstrapSelect: React.ComponentType<SelectProps> = (
   );
 };
 
-export const Form = <Values,>(props: FormikConfig<Values>) => {
+export const Form = <Values extends FormikValues>(
+  props: FormikConfig<Values>,
+) => {
   const { children, ...formikProps } = props;
   return (
-    <Formik
+    <Formik<Values>
       {...formikProps}
       // Better accessibility if we wait until blur to validate.
       // See e.g. https://www.tpgi.com/required-attribute-requirements/
       validateOnChange={false}
     >
-      {(renderProps: FormikProps<Values>): JSX.Element => (
+      {(renderProps): JSX.Element => (
         <form
           onSubmit={renderProps.handleSubmit}
           // Better accessibility if we do our own inline validation.
