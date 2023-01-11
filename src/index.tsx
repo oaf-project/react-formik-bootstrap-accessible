@@ -338,6 +338,7 @@ export const Form = <Values extends FormikValues>(
           onSubmit={renderProps.handleSubmit}
           // Better accessibility if we do our own inline validation.
           // See e.g. https://www.tpgi.com/required-attribute-requirements/
+          // See e.g. https://github.com/w3c/wcag/issues/961
           // Doing this allows us to set the `required` attribute on inputs (for
           // the semantics!) without fear of triggering native (bad) validation.
           noValidate={true}
